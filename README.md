@@ -27,7 +27,7 @@ On another note - this project will challenge your knowledge of React but should
 in creating good user experiences. Your view should be styled to look good as well as function
 flawlessly.
 
-Here are the user stories to guide your progress:
+## User Stories:
 
 - As a user, I should start off seeing a 3x3 grid on the main page
 
@@ -43,11 +43,7 @@ and the game has ended.
 ![winner](https://s3.amazonaws.com/learn-site/curriculum/tic-tac-toe-winner.png)
 
 
-## Extra Challenges
+## Stretch Goals:
 - Use flexbox to set up your grid
 - Allow users to choose their mark (X, O, a color, an emoji, etc...)
-- Create a component for alerts and push the win/lose messages there instead of using an alert
-
-# How to Use this Repo
-
-When your team is ready to begin coding, open this project in Atom and edit it directly. Remember to add and commit regularly and, at the end of the project day, be sure to push your changes to Github.
+- Create a component for win/lose messages instead of using an alert
