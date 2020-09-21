@@ -87,7 +87,7 @@ class App extends Component{
         <h1>Tic Tac Toe</h1>
         <h3>Current Player : {this.state.currentPlayer === 1? "X" : "O"} </h3>
         <button
-          id="reset-button"
+          id="restart-button"
           onClick = {this.handleRestart}>Restart Game</button>
         <div id="gameBoard">
           { grid }
