@@ -14,7 +14,7 @@ class App extends Component{
   
 //get indexes of all X so we have a new array of the index[X] and compare to winCondition
   winCheck = (squares) => {
-    let winConditions = [
+    const winConditions = [
       [0,1,2],
       [3,4,5],
       [6,7,8],
@@ -24,48 +24,50 @@ class App extends Component{
       [2,4,6],
       [0,4,8]
     ]
-    // map through all squares in the array and get the index if there is an X
-    let onlyXs = squares.map((square, index)  => {
-      if(square === "X") {
-        return index
-      } 
-      //filter through array for only numbers (which represent X indexes)
-    }).filter(value => typeof value === "number")
-    console.log("array of Xs: ", onlyXs)
-    // compare onlyXs array to the values of the win conditions
-    // find the index at which the values of winConditions array has the some of the same values of onlyXs
-    console.log(typeof onlyXs)
-    console.log(typeof winConditions[0])
-    console.log("winConditions: ", winConditions[0])
-    // if([0,1,2] == winConditions[0]) {
-    //   return alert("You win!")
-    // }
-    
-
+    // go through all subarrays of the win conditions
+    for (let i = 0; i < winConditions.length; i++) {
+      // destructor the values at each subarray to simply a, b, c
+      const [a, b, c] = winConditions[i]
+      // check if the symbol of 'X' or 'O' is the same at locations a, b, and c
+      // if the same symbol is found in the given winning conditions, then return the winner symbol
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        console.log(`winner: ${squares[a]}`)
+        return this.winnerMessage(squares[a])
+      }
+    }
   }
-    
-    //if the index of Xs matches any winConditions alert "You won"
-  //   if(squar)
-  // }
 
   handleChange = (i) => {
     let { squares, currentPlayer } = this.state
     if(squares[i] !== " " ){
-      console.log(currentPlayer)
+      console.log(`currentPlayer: ${currentPlayer}`)
       console.log("bailed early")
       return 
     } else if (currentPlayer === 0 ) {
       squares[i] = "O"
       // call functin
+      this.winCheck(squares)
       currentPlayer = 1 
     } else {
       squares[i] = "X"
       this.winCheck(squares)
       currentPlayer = 0
     }
-    console.log(currentPlayer)
-    console.log(squares)
+    console.log(`current player: ${currentPlayer}`)
+    console.log(`squares array: ${squares}`)
     this.setState({squares: squares, currentPlayer: currentPlayer})
+  }
+
+  winnerMessage = (win) => {
+    if (win === 'X') {
+      return alert("The winner is: X")
+    } else if (win === 'O') {
+      return alert("The winner is: O")
+    }
+  }
+
+  handleRestart = () => {
+    window.location.reload()
   }
 
   render(){
@@ -83,6 +85,10 @@ class App extends Component{
     return(
       <React.Fragment>
         <h1>Tic Tac Toe</h1>
+        <h3>Current Player : {this.state.currentPlayer === 1? "X" : "O"} </h3>
+        <button
+          id="reset-button"
+          onClick = {this.handleRestart}>Restart Game</button>
         <div id="gameBoard">
           { grid }
         </div>
