@@ -8,6 +8,7 @@ class App extends Component{
     this.state = {
       squares: [...Array(9).fill(" ")],
       currentPlayer: 1,
+      winner: null,
     }
   }
   // possible win condition index combinations
@@ -35,12 +36,12 @@ class App extends Component{
         return this.winnerMessage(squares[a])
       }
     }
+    return null
   }
 
   handleChange = (i) => {
     let { squares, currentPlayer } = this.state
     if(squares[i] !== " " ){
-      console.log(`currentPlayer: ${currentPlayer}`)
       console.log("bailed early")
       return 
     } else if (currentPlayer === 0 ) {
@@ -53,16 +54,20 @@ class App extends Component{
       this.winCheck(squares)
       currentPlayer = 0
     }
-    console.log(`current player: ${currentPlayer}`)
-    console.log(`squares array: ${squares}`)
+    // console.log(`current player: ${currentPlayer}`)
+    // console.log(`squares array: ${squares}`)
     this.setState({squares: squares, currentPlayer: currentPlayer})
   }
 
   winnerMessage = (win) => {
+    let { squares } = this.state
+    console.log(`squares array: ${squares}`)
     if (win === 'X') {
-      return alert("The winner is: X")
+      this.setState({winner: "X is the WINNER"})
     } else if (win === 'O') {
-      return alert("The winner is: O")
+      this.setState({winner: "O is the WINNER"})
+    } else if (!squares.includes(" ") && win === null) {
+      this.setState({winner: "*meow* 🙀 CATS GAME."})
     }
   }
 
@@ -86,12 +91,13 @@ class App extends Component{
       <React.Fragment>
         <h1>Tic Tac Toe</h1>
         <h3>Current Player : {this.state.currentPlayer === 1? "X" : "O"} </h3>
-        <button
-          id="restart-button"
-          onClick = {this.handleRestart}>Restart Game</button>
+        <h2> {this.state.winner} </h2>
         <div id="gameBoard">
           { grid }
         </div>
+        <button
+          id="restart-button"
+          onClick = {this.handleRestart}>Restart Game</button>
       </React.Fragment>
     )
   }

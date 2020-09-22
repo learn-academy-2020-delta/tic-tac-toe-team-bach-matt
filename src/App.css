@@ -5,6 +5,15 @@ body {
   font-family: 'Fredoka One', cursive;
 }
 
+h1 {
+  background-color: #FFE66D;
+  padding: 15px;
+}
+
+h2 {
+  color: #FF6B6B;
+}
+
 #square{
   display: flex;
   height: 100px;
@@ -29,7 +38,7 @@ body {
   color: #F7FFF7;
   border-radius: 30px;
   padding: 16px;
-  margin: 10px;
+  margin: 15px;
 }
 
 #restart-button:hover {
