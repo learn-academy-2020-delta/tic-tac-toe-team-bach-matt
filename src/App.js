@@ -11,10 +11,11 @@ class App extends Component{
       winner: null,
     }
   }
-  // possible win condition index combinations
   
-//get indexes of all X so we have a new array of the index[X] and compare to winCondition
+  //get indexes of all X so we have a new array of the index[X] and compare to winCondition
   winCheck = (squares) => {
+    let { winner } = this.state
+    // possible win condition index combinations
     const winConditions = [
       [0,1,2],
       [3,4,5],
@@ -34,13 +35,15 @@ class App extends Component{
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         console.log(`winner: ${squares[a]}`)
         return this.winnerMessage(squares[a])
+      } else if (!squares.includes(" ") && winner === null) {
+        return this.setState({winner: "*meow* 🙀 CATS GAME."})
       }
     }
     return null
   }
 
   handleChange = (i) => {
-    let { squares, currentPlayer } = this.state
+    let { squares, currentPlayer} = this.state
     if(squares[i] !== " " ){
       console.log("bailed early")
       return 
@@ -60,14 +63,11 @@ class App extends Component{
   }
 
   winnerMessage = (win) => {
-    let { squares } = this.state
-    console.log(`squares array: ${squares}`)
+    // console.log(`squares array: ${squares}`)
     if (win === 'X') {
-      this.setState({winner: "X is the WINNER"})
+      this.setState({winner: "X is the WINNER!"})
     } else if (win === 'O') {
-      this.setState({winner: "O is the WINNER"})
-    } else if (!squares.includes(" ") && win === null) {
-      this.setState({winner: "*meow* 🙀 CATS GAME."})
+      this.setState({winner: "O is the WINNER!"})
     }
   }
 
@@ -90,8 +90,7 @@ class App extends Component{
     return(
       <React.Fragment>
         <h1>Tic Tac Toe</h1>
-        <h3>Current Player : {this.state.currentPlayer === 1? "X" : "O"} </h3>
-        <h2> {this.state.winner} </h2>
+        <h2> { this.state.winner !== null? this.state.winner : `Current Player : ${this.state.currentPlayer === 1? "X" : "O"}` }</h2>
         <div id="gameBoard">
           { grid }
         </div>

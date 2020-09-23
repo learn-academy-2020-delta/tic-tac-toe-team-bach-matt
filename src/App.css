@@ -8,10 +8,11 @@ body {
 h1 {
   background-color: #FFE66D;
   padding: 15px;
+  text-shadow: 2px 2px #FF6B6B;
 }
 
 h2 {
-  color: #FF6B6B;
+  text-shadow: 2px 2px #FFE66D;
 }
 
 #square{
@@ -45,6 +46,7 @@ h2 {
   background-color: #F7FFF7;
   border: 2px solid #FF6B6B;
   color: #FF6B6B;
+  transition-duration: 0.3s;
 }
 #gameBoard {
   display: flex;
